@@ -32,6 +32,14 @@ class App extends Component {
                 })
              });
         });
+        socket.on("user out", data => {
+            this.setState({
+                 messages : this.state.messages.concat({
+                    nickname : data.nickname,
+                    text : ' 퇴장하셨습니다.',
+                })
+             });
+        });
     }
 
     handleChange = e => {

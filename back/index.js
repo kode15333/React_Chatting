@@ -18,7 +18,7 @@ io.on("connection", socket => {
         socket.broadcast.emit('user joined', {nickname : data.nickname})
     })
 
-    socket.on("disconnect", () => console.log("Client disconnected"));
+    socket.on("disconnect", () => socket.broadcast.emit('user out', {nickname : data.nickname}));
 });
 
 
