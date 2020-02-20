@@ -8,8 +8,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 io.on("connection", socket => {
-    console.log("New client connected");
-
     socket.on("incoming data", (data)=>{
        socket.broadcast.emit("outgoing data", {nickname: socket.nickname, message : data.text});
     });
@@ -18,7 +16,8 @@ io.on("connection", socket => {
         socket.broadcast.emit('user joined', {nickname : data.nickname})
     })
 
-    socket.on("disconnect", () => socket.broadcast.emit('user out', {nickname : data.nickname}));
+    socket.on("disconnect", () => {
+        socket.broadcast.emit('user out', {nickname : socket.nickname})});
 });
 
 

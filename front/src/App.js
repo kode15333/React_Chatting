@@ -28,17 +28,19 @@ class App extends Component {
             this.setState({
                  messages : this.state.messages.concat({
                     nickname : data.nickname,
-                    text : ' ',
+                    text : '입장',
                 })
              });
         });
         socket.on("user out", data => {
-            this.setState({
-                 messages : this.state.messages.concat({
-                    nickname : data.nickname,
-                    text : ' 퇴장하셨습니다.',
-                })
-             });
+            if(data.nickname){
+                this.setState({
+                     messages : this.state.messages.concat({
+                        nickname : data.nickname,
+                        text : '퇴장',
+                    })
+                 });
+            }
         });
     }
 

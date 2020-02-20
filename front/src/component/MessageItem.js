@@ -10,7 +10,7 @@ class MessageItem extends Component {
         return (
           
                 <li>
-                    {text === ' ' ? (nickname + '님이 입장하셨습니다.') : (nickname + " : " + text)}
+                    {text === '퇴장' ? (nickname + "님이 퇴장하셨습니다. ") : ((text === '입장' ? (nickname + "님이 입장하셨습니다. ") : (nickname + " : " + text)))}
                 </li>
            
         );
